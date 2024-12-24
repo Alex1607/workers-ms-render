@@ -29,10 +29,10 @@ impl Provider for GreevProvider {
             return Err(MinesweeperError::GameDataNotFound);
         };
         let response = Fetch::Request(request).send().await;
-        return response
+        response
             .unwrap()
             .json::<ApiData>()
             .await
-            .map_err(|_| MinesweeperError::ApiDataParse);
+            .map_err(|_| MinesweeperError::ApiDataParse)
     }
 }
